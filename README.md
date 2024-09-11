@@ -37,7 +37,7 @@ erDiagram
     PEDIDO ||--o{ LINEA_PEDIDO : contiene
     LINEA_PEDIDO }o--|| ARTICULO : incluye
     ARTICULO ||--o{ FABRICA : distribuido_por
-
+```
 
 ```mermaid
 erDiagram
