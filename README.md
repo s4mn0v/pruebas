@@ -1,5 +1,46 @@
 ```mermaid
 erDiagram
+    CLIENTE {
+        int numero_cliente PK "Número de cliente (único)"
+        string direcciones_envio "Direcciones de envío (varias)"
+        float saldo "Saldo"
+        float limite_credito "Límite de crédito (máx $3.000.000)"
+        float descuento "Descuento"
+    }
+
+    ARTICULO {
+        int numero_articulo PK "Número de artículo (único)"
+        string fabricas "Fábricas que lo distribuyen"
+        int existencias "Existencias en cada fábrica"
+        string descripcion "Descripción del artículo"
+    }
+
+    PEDIDO {
+        int numero_cliente FK "Número de cliente"
+        string direccion_envio "Dirección de envío"
+        datetime fecha_pedido "Fecha del pedido"
+    }
+
+    LINEA_PEDIDO {
+        int numero_pedido FK "Número de pedido"
+        int numero_articulo FK "Número del artículo pedido"
+        int cantidad "Cantidad"
+    }
+
+    FABRICA {
+        int numero_fabrica PK "Número de fábrica (único)"
+        string telefono_contacto "Teléfono de contacto"
+        int total_articulos "Total de artículos proveídos"
+    }
+
+    CLIENTE ||--o{ PEDIDO : realiza
+    PEDIDO ||--o{ LINEA_PEDIDO : contiene
+    LINEA_PEDIDO }o--|| ARTICULO : incluye
+    ARTICULO ||--o{ FABRICA : distribuido_por
+
+
+```mermaid
+erDiagram
     CLIENTES {
         int NumeroCliente PK
         string DireccionesEnvio
